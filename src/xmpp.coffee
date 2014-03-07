@@ -42,7 +42,7 @@ class XmppBot extends Adapter
     @client.on 'error', @.error
     @client.on 'online', @.online
     @client.on 'stanza', @.read
-    @client.on 'offline', @.offline
+    @client.on 'offline', @.die
 
     @options = options
     @connected = false
@@ -347,6 +347,9 @@ class XmppBot extends Adapter
     @robot.logger.debug process
     @robot.logger.debug process.exit
     clearInterval(@keepaliveInterval)
+
+  die: =>
+    process.exit(1)
 
 exports.use = (robot) ->
   new XmppBot robot
