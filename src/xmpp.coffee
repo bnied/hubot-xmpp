@@ -349,6 +349,7 @@ class XmppBot extends Adapter
     clearInterval(@keepaliveInterval)
 
   die: =>
+    @robot.logger.debug "Offline event received. Terminating Hubot..."
     process.exit(1)
 
 exports.use = (robot) ->
